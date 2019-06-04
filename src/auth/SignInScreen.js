@@ -1,5 +1,7 @@
 import React from 'react'
-import {View,Button,AsyncStorage} from 'react-native'
+import {View,Button} from 'react-native'
+import { login } from '../store/actions/userActions';
+import {connect} from 'react-redux'
 
 class SignInScreen extends React.PureComponent {
     static navigationOptions = {
@@ -15,9 +17,12 @@ class SignInScreen extends React.PureComponent {
     }
   
     _signInAsync = async () => {
-      await AsyncStorage.setItem('userToken', 'abc');
-      this.props.navigation.navigate('App');
+      this.props.login()
     };
   }
-  
-export default SignInScreen
+ 
+const mapDispatchToProps = (dispatch) => ({
+     login: () => dispatch(login())
+ }) 
+
+export default connect(null,mapDispatchToProps)(SignInScreen)
