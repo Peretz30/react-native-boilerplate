@@ -1,10 +1,10 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './HomeScreen';
-import SignInScreen from './auth/SignInScreen';
+import LoginScreen from './auth/LoginScreen';
 import AuthLoadingScreen from './AuthLoadingScreen';
 
-const AppStack = createStackNavigator({ Home: HomeScreen });
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+const AppStack = createStackNavigator({ Home: HomeScreen }, );
+const AuthStack = createStackNavigator({ SignIn: LoginScreen }, {headerMode: 'none'});
 
 export default createAppContainer(createSwitchNavigator(
   {
@@ -13,6 +13,7 @@ export default createAppContainer(createSwitchNavigator(
     Auth: AuthStack,
   },
   {
-    initialRouteName: 'AuthLoading',
+      initialRouteName: 'AuthLoading',
+      
   }
 ));

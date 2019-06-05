@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  AsyncStorage,
   StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
+import {connect} from 'react-redux'
 
 class AuthLoadingScreen extends React.PureComponent {
   constructor(props) {
@@ -15,11 +15,10 @@ class AuthLoadingScreen extends React.PureComponent {
 
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    this.props.navigation.navigate(this.props.isLoggedIn ? 'App' : 'Auth');
   };
 
   // Render any loading content that you like here
@@ -33,4 +32,8 @@ class AuthLoadingScreen extends React.PureComponent {
   }
 }
 
-export default AuthLoadingScreen
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.user.isLoggedIn
+})
+
+export default connect(mapStateToProps)(AuthLoadingScreen)

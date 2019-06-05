@@ -1,5 +1,7 @@
 import React from 'react'
-import {View,Button,AsyncStorage} from 'react-native'
+import { View, Button } from 'react-native'
+import { connect } from 'react-redux'
+import {logout} from './store/actions/userActions'
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -19,10 +21,13 @@ class HomeScreen extends React.Component {
       this.props.navigation.navigate('Other');
     };
   
-    _signOutAsync = async () => {
-      await AsyncStorage.clear();
-      this.props.navigation.navigate('Auth');
+    _signOutAsync = () => {
+      this.props.logout()
     };
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => dispatch(logout())
+})
   
-export default HomeScreen
+export default connect(null,mapDispatchToProps)(HomeScreen)
