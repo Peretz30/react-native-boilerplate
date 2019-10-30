@@ -20,7 +20,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
-    "yarn": "^1.16.0"
+    "yarn": "^1.17.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
